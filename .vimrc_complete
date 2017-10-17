@@ -1,9 +1,14 @@
 set sw=4
 set ts=4
 set et
-set smarttab 
+"set smarttab 
 set smartindent
+set lbr
+set fo+=mB
+set sm
+set selection=inclusive
 set wildmenu
+set mousemodel=popup
 
 au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
 au FileType css setlocal dict+=~/.vim/dict/css.dict
@@ -14,6 +19,15 @@ au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
 au FileType html setlocal dict+=~/.vim/dict/javascript.dict
 au FileType html setlocal dict+=~/.vim/dict/css.dict
 
+"
+"syntastic相关
+execute pathogen#infect()
+let g:syntastic_python_checkers=['pylint']
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+"golang
+"Processing... % (ctrl+c to stop)
+let g:fencview_autodetect=0
+set rtp+=$GOROOT/misc/vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 显示相关  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -33,7 +47,7 @@ set showcmd         " 输入的命令显示出来，看的清楚些
 "set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)  
 "set scrolloff=3     " 光标移动到buffer的顶部和底部时保持3行距离  
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
-set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)  
+"set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)  
 "set foldenable      " 允许折叠  
 ""set foldmethod=manual   " 手动折叠  
 set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限  
@@ -65,7 +79,7 @@ set incsearch
 set langmenu=zh_CN.UTF-8
 set helplang=cn
 " 总是显示状态行
-"set cmdheight=2
+set cmdheight=2
 " 侦测文件类型
 filetype on
 " 载入文件类型插件
@@ -90,7 +104,6 @@ nmap fi :!firefox %.html & <CR><CR>
 
 "将tab替换为空格
 "nmap tt :%s/\t/    /g<CR>
-
 
 
 
@@ -152,7 +165,7 @@ autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "键盘命令
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-":nmap <silent> <F9> <ESC>:Tlist<RETURN>
+:nmap <silent> <F9> <ESC>:Tlist<RETURN>
 " shift tab pages
 "map <S-Left> :tabp<CR>
 "map <S-Right> :tabn<CR>
@@ -171,7 +184,7 @@ autocmd BufNewFile * normal G
 "imap <C-a> <Esc>^
 "imap <C-e> <Esc>$
 "vmap <C-c> "+y
-"set mouse=v
+set mouse=v
 "set clipboard=unnamed
 "去空行  
 "nnoremap <F2> :g/^\s*$/d<CR> 
@@ -223,7 +236,7 @@ endfunc
 
 "代码格式优化化
 
-"map <F6> :call FormartSrc()<CR><CR>
+map <F6> :call FormartSrc()<CR><CR>
 
 "定义FormartSrc()
 func FormartSrc()
@@ -364,7 +377,7 @@ let Tlist_Auto_Open=0
 """""""""""""""""""""""""""""" 
 " Tag list (ctags) 
 """""""""""""""""""""""""""""""" 
-let Tlist_Ctags_Cmd = '~/.ctags' 
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
 let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的 
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim 
@@ -379,7 +392,7 @@ nmap tl :Tlist<cr>
 "python补全
 let g:pydiction_location = '~/.vim/after/complete-dict'
 let g:pydiction_menu_height = 20
-let Tlist_Ctags_Cmd='~/.ctags'
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
@@ -401,27 +414,27 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-"Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'
 
 " My Bundles here:
 "
 " original repos on github
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-fugitive'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'Yggdroot/indentLine'
-"let g:indentLine_char = ' '
+"let g:indentLine_char = '┊'
 "ndle 'tpope/vim-rails.git'
 " vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
 " non github repos
-"Bundle 'https://github.com/wincent/command-t.git'
+Bundle 'https://github.com/wincent/command-t.git'
 "Bundle 'Auto-Pairs'
 Bundle 'python-imports.vim'
 Bundle 'CaptureClipboard'
 "Bundle 'ctrlp-modified.vim'
 Bundle 'last_edit_marker.vim'
-"Bundle 'synmark.vim'
+Bundle 'synmark.vim'
 "Bundle 'Python-mode-klen'
 Bundle 'SQLComplete.vim'
 Bundle 'Javascript-OmniCompletion-with-YUI-and-j'
@@ -429,14 +442,14 @@ Bundle 'Javascript-OmniCompletion-with-YUI-and-j'
 "Bundle 'Better-Javascript-Indentation'
 Bundle 'jslint.vim'
 Bundle "pangloss/vim-javascript"
-"Bundle 'Vim-Script-Updater'
+Bundle 'Vim-Script-Updater'
 "Bundle 'ctrlp.vim'
 "Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'jsbeautify'
 Bundle 'The-NERD-Commenter'
 "django
-"Bundle 'django_templates.vim'
-"Bundle 'Django-Projects'
+Bundle 'django_templates.vim'
+Bundle 'Django-Projects'
 
 "Bundle 'FredKSchott/CoVim'
 "Bundle 'djangojump'
@@ -458,8 +471,4 @@ let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 
 let NERDTreeIgnore=['\.pyc']
 
-let g:acp_enableAtStartup = 1
-let g:gcp_ignorecaseOption = 0
-let b:SuperTabDisabled = 1
-"let g:superTabCrMapping = 0
-"let g:acp_behaviorKeywordCommand="\<C-x>\<C-o>"
+autocmd FileType c,cpp,python set sw=4 | set ts=4 | set expandtab

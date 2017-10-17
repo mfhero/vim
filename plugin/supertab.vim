@@ -143,7 +143,7 @@ if !exists('complType') "Integration with other completion functions...
   endf
 
   " From the doc |insert.txt| improved
-  im <Tab> <C-n>
+  "im <Tab> <C-n>
   inore <S-Tab> <C-p>
 
   " This way after hitting <Tab>, hitting it once more will go to next match
