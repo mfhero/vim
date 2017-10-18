@@ -18,7 +18,7 @@ au FileType html setlocal dict+=~/.vim/dict/css.dict
 " 显示相关  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
-"set cul "高亮光标所在行
+set cul "高亮光标所在行
 "set cuc
 set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示  
 set go=             " 不要图形按钮  
