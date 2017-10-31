@@ -103,12 +103,29 @@ autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
 func SetTitle() 
 	"如果文件类型为.sh文件 
 	if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
-		call append(line("."), "") 
+		call setline(1, '################################################################') 
+		call append(line("."),   '# File Name: '.expand("%")) 
+		call append(line(".")+1, '# Author: gaoyu') 
+		call append(line(".")+2, '# Mail: gaoyu.2017@bytedance.com') 
+		call append(line(".")+3, '# Created Time: '.strftime("%c")) 
+		call append(line(".")+4, '################################################################') 
+		call append(line(".")+5, "")
+
+		call setline(7,"\#!/bin/bash") 
+		call append(line(".")+6, "") 
     elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python")
-        call append(line("."),"# coding=utf-8")
-	    call append(line(".")+1, "") 
+		call setline(1, '################################################################') 
+		call append(line("."),   '# File Name: '.expand("%")) 
+		call append(line(".")+1, '# Author: gaoyu') 
+		call append(line(".")+2, '# Mail: gaoyu.2017@bytedance.com') 
+		call append(line(".")+3, '# Created Time: '.strftime("%c")) 
+		call append(line(".")+4, '################################################################') 
+		call append(line(".")+5, "")
+
+
+        call setline(8,"#!/usr/bin/env python")
+        call append(line(".")+7,"#coding=utf-8")
+	    call append(line(".")+8, "") 
 
     elseif &filetype == 'ruby'
         call setline(1,"#!/usr/bin/env ruby")
@@ -422,7 +439,7 @@ Bundle 'CaptureClipboard'
 "Bundle 'ctrlp-modified.vim'
 Bundle 'last_edit_marker.vim'
 "Bundle 'synmark.vim'
-"Bundle 'Python-mode-klen'
+Bundle 'Python-mode-klen'
 Bundle 'SQLComplete.vim'
 Bundle 'Javascript-OmniCompletion-with-YUI-and-j'
 "Bundle 'JavaScript-Indent'
@@ -463,3 +480,4 @@ let g:gcp_ignorecaseOption = 0
 let b:SuperTabDisabled = 1
 "let g:superTabCrMapping = 0
 "let g:acp_behaviorKeywordCommand="\<C-x>\<C-o>"
+let g:python_highlight_builtin_funcs = 1
