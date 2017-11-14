@@ -22,9 +22,10 @@ set cul "高亮光标所在行
 "set cuc
 set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示  
 set go=             " 不要图形按钮  
-"color desert     " 设置背景主题  
+color desert     " 设置背景主题  
 "color ron     " 设置背景主题  
-color torte     " 设置背景主题  
+"color torte     " 设置背景主题  
+"color Green
 "set guifont=Courier_New:h10:cANSI   " 设置字体  
 "autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
 "autocmd InsertEnter * se cul    " 用浅色高亮当前行  
@@ -103,29 +104,36 @@ autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
 func SetTitle() 
 	"如果文件类型为.sh文件 
 	if &filetype == 'sh' 
-		call setline(1, '################################################################') 
-		call append(line("."),   '# File Name: '.expand("%")) 
-		call append(line(".")+1, '# Author: gaoyu') 
-		call append(line(".")+2, '# Mail: gaoyu.2017@bytedance.com') 
-		call append(line(".")+3, '# Created Time: '.strftime("%c")) 
-		call append(line(".")+4, '################################################################') 
-		call append(line(".")+5, "")
+        call setline(1, '#!/bin/bash')
+        call append(line("."), "")
 
-		call setline(7,"\#!/bin/bash") 
-		call append(line(".")+6, "") 
+		call setline(3, '################################################################') 
+		call append(line(".")+2,   '# File Name: '.expand("%")) 
+		call append(line(".")+3, '# Author: gaoyu') 
+		call append(line(".")+4, '# Mail: gaoyu.2017@bytedance.com') 
+		call append(line(".")+5, '# Created Time: '.strftime("%c")) 
+		call append(line(".")+6, '################################################################') 
+		call append(line(".")+7, "")
+
+	"	call setline(7,"\#!/bin/bash") 
+	"	call append(line(".")+6, "") 
     elseif &filetype == 'python'
-		call setline(1, '################################################################') 
-		call append(line("."),   '# File Name: '.expand("%")) 
-		call append(line(".")+1, '# Author: gaoyu') 
-		call append(line(".")+2, '# Mail: gaoyu.2017@bytedance.com') 
-		call append(line(".")+3, '# Created Time: '.strftime("%c")) 
-		call append(line(".")+4, '################################################################') 
-		call append(line(".")+5, "")
+        call setline(1, '#!/usr/bin/env python')
+        call append(line("."), '# encoding: utf-8')
+        call append(line(".")+1, "")
+
+		call setline(4, '################################################################') 
+		call append(line(".")+3,   '# File Name: '.expand("%")) 
+		call append(line(".")+4, '# Author: gaoyu') 
+		call append(line(".")+5, '# Mail: gaoyu.2017@bytedance.com') 
+		call append(line(".")+6, '# Created Time: '.strftime("%c")) 
+		call append(line(".")+7, '################################################################') 
+		call append(line(".")+8, "")
 
 
-        call setline(8,"#!/usr/bin/env python")
-        call append(line(".")+7,"#coding=utf-8")
-	    call append(line(".")+8, "") 
+      "  call setline(8,"#!/usr/bin/env python")
+      "  call append(line(".")+7,"#coding=utf-8")
+	  "  call append(line(".")+8, "") 
 
     elseif &filetype == 'ruby'
         call setline(1,"#!/usr/bin/env ruby")
